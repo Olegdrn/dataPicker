@@ -29,9 +29,9 @@ export function DaysAmountInThePanel(year:number, month:number):Panel {
     amountDaysInTheMonths[month-1]).getDate() - TheWeekDayOfTheFirstMonthsDay+2);
 
 
- const lastDayInThePanel: number = new Date(year, 
-  month+1, 7 - TheWeekDayOfTheLastMonthsDay)
- .getDate();
+  const lastDayInThePanel: number = new Date(year, 
+    month+1, 7 - TheWeekDayOfTheLastMonthsDay)
+    .getDate();
 
  for (let index:number = amountDaysInTheMonths[month-1]; 
   index >=  firstDayInThePanel; 

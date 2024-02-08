@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { DaysAmountInThePanel } from "../date/daysAmountInThePanel";
 import { DecreaseMonths} from "../date/decreaseMonths";
 import { IncreaseMonths} from "../date/increaseMonths";
@@ -6,10 +6,16 @@ import {monthsListFull,daysWeekShort } from "../../data";
 import styles from './Calendar.module.scss';
 import vectorLeft from "../../assets/img/VectorLeft.svg";
 import vectorRight from "../../assets/img/VectorRight.svg";
+import { GetYearsList } from "../date/getYearsList";
+import { useAppSelector, useAppDispatch } from "../../hooks/redux";
+import { dateChanging } from "../../features/dateState";
+import {changePanelMode} from "../../features/panelModeState";
+
 
 export const Calendar: React.FC = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [tableType, settableType] = useState<'days'| 'months' | 'years'>('days');
+  const currentDate: Date = useAppSelector((state)=> state.dateChanger.currentDate);
+  const panelMode: string = useAppSelector((state)=> state.modeChanger.panelMode);
+  const dispatch = useAppDispatch();
 
   let {
     daysAmountInThePreviousMonths,
@@ -22,28 +28,30 @@ export const Calendar: React.FC = () => {
     );
   
   function decreaseMonths(): void {
-    setCurrentDate(DecreaseMonths(currentDate));
+    dispatch(dateChanging(DecreaseMonths(currentDate)));
   }
 
   function increaseMonths(): void {
-    setCurrentDate(IncreaseMonths(currentDate));
+    dispatch(dateChanging(IncreaseMonths(currentDate)));
   }
 
   function changeModeToMonths(): void {
-    settableType('months');
+    dispatch(changePanelMode('months'));
   }
 
   function changeModeToYears(): void {
-    settableType('years');
+    dispatch(changePanelMode('years'));
   }
 
-
+  function changeModeToDays(): void {
+    dispatch(changePanelMode('days'));
+  }
 
 
   return (
   <>
   <div className={styles.container}>
-    {tableType === 'days'&&(
+    {panelMode === 'days'&&(
       <>
         <div className={styles.generalInfo}>
           <div className={styles.direction} onClick={decreaseMonths}>
@@ -81,16 +89,45 @@ export const Calendar: React.FC = () => {
       </>
     )}
 
-    {tableType === 'months'&& (
+    {panelMode === 'months'&& (
+      <>
+      <div className={styles.generalInfo}>
+        <p className={styles.year} onClick={changeModeToYears}>
+          {currentDate.getFullYear()}
+        </p>
+      </div>
       <div className={styles.monthsList}>
         {monthsListFull.map((value:string, index:number)=>
-        <p className={styles.monthsCell} key={index}>{value}</p>
+        <p className={styles.monthsCell} key={index}
+          onClick={()=>{
+            dispatch(dateChanging(new Date(currentDate.getFullYear(), index, 1)))
+            changeModeToDays();
+          }}>
+            {value}
+        </p>
         )}
       </div>
-      )}
-    {tableType === 'years'&& (
-      <div></div>
-      )}
+      </>
+    )}
+    {panelMode === 'years'&& (
+          <>
+            <div className={styles.generalInfo}>
+              <p className={styles.year} onClick={changeModeToYears}>
+                {currentDate.getFullYear()}
+              </p>
+            </div>
+            <div className={styles.monthsList}>
+              {GetYearsList(currentDate).map((value:number, index:number)=>
+              <p className={styles.monthsCell} key={index} onClick={()=>{
+                dispatch(dateChanging(new Date(value, 0, 1)))
+                changeModeToMonths();
+              }}>
+                {value}
+               </p>
+              )}
+            </div>
+          </>
+    )}
   </div>
   </>
   )
