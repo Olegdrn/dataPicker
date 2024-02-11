@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
+  font-family:"Segoe UI";
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,4 +8,15 @@
   min-height: 100vh;
 }
 
+.dayCell{
+  padding: 3px;
+  margin: 5px;
+  cursor: pointer;
+}
 
+.clickedDayCell{
+  padding: 3px;
+  margin: 5px;
+  cursor: pointer;
+  background-color: blue;
+}

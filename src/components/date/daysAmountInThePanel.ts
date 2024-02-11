@@ -17,16 +17,19 @@ export function DaysAmountInThePanel(year:number, month:number):Panel {
   const firstDayInTheCurrentMonths:Date =new Date(year, month,1);
 
   const lastDayInTheCurrentMonths:Date = new Date(year, month,amountDaysInTheMonths[month]);
+
   
 
   const TheWeekDayOfTheFirstMonthsDay:number = firstDayInTheCurrentMonths.getDay();
 
   const TheWeekDayOfTheLastMonthsDay:number = lastDayInTheCurrentMonths.getDay();
-  
 
+  let firstDayInThePanel: number;
 
-  const firstDayInThePanel: number = (new Date(year, month-1,
-    amountDaysInTheMonths[month-1]).getDate() - TheWeekDayOfTheFirstMonthsDay+2);
+  TheWeekDayOfTheFirstMonthsDay === 0 ? firstDayInThePanel= (new Date(year, month-1,
+    amountDaysInTheMonths[month-1]).getDate() + TheWeekDayOfTheFirstMonthsDay - 5):
+    firstDayInThePanel = (new Date(year, month-1,
+      amountDaysInTheMonths[month-1]).getDate() - TheWeekDayOfTheFirstMonthsDay+2);
 
 
   const lastDayInThePanel: number = new Date(year, 

@@ -1,0 +1,100 @@
+$hoverColor: #006BB4;
+
+%grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+%font {
+  font-weight:bold;
+  text-decoration: underline;
+}
+
+.generalInfo, .monthsYearInfo{
+display: flex;
+align-items: center;
+}
+
+.generalInfo{
+  justify-content:space-around;
+}
+
+.direction{
+  height: 22px;
+  scale: 1.3;
+  padding: 0 6px 6px;
+}
+
+.direction:hover{
+  scale: 1.5;
+  cursor: pointer;
+  background-color: #f2f2f3;
+}
+
+.weekDays{
+  opacity: 0.6;
+}
+
+.calendar, .weekDays{
+  @extend %grid;
+}
+
+.dayCell, .dayCellBefAft{
+  padding: 3px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.dayCellBefAft{
+opacity: 0.5;
+}
+
+.dayCell:hover, .dayCellBefAft:hover{
+  @extend %font;
+}
+
+.year{
+  opacity: 0.7;
+}
+
+.months {
+  margin-right: 20px;
+}
+
+.months:hover, .year:hover{
+  color: $hoverColor;
+  cursor: pointer;
+}
+
+.monthsList{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.monthsCell{
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 8px;
+}
+
+.monthsCell:hover{
+  cursor: pointer;
+  background-color: #f2f2f3;
+}
+
+.monthsCell:active{
+  cursor: pointer;
+  background-color: #2d55b9;
+}
+.flex{
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 83%;
+}
+
+.daysTable{
+  width: 80%;
+}

@@ -1,9 +1,21 @@
+$hoverColor: #006BB4;
 .container {
   display: flex;
+  margin-bottom: 5px;
 }
 
 .button {
   width: 15vw;
-  margin: 10px;
+  margin: 5px;
   height: 30px ;
+  cursor: pointer;
+}
+
+.button:hover{
+  text-decoration: underline;
+}
+
+.button:focus{
+  text-decoration: underline;
+  border-bottom: 4px solid $hoverColor;
 }
