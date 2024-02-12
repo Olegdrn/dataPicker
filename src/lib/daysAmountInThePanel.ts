@@ -1,3 +1,4 @@
+
 import { LeapYearCheck } from "./leapYearCheck";
 
 interface Panel {
@@ -26,22 +27,41 @@ export function DaysAmountInThePanel(year:number, month:number):Panel {
 
   let firstDayInThePanel: number;
 
-  TheWeekDayOfTheFirstMonthsDay === 0 ? firstDayInThePanel= (new Date(year, month-1,
-    amountDaysInTheMonths[month-1]).getDate() + TheWeekDayOfTheFirstMonthsDay - 5):
+  if (month === 0 && TheWeekDayOfTheFirstMonthsDay === 0){
+    firstDayInThePanel= (new Date(year-1, 11,
+      amountDaysInTheMonths[11]).getDate() + TheWeekDayOfTheFirstMonthsDay - 5)
+      console.log(firstDayInThePanel)
+  } else if(TheWeekDayOfTheFirstMonthsDay === 0) {
+    firstDayInThePanel= (new Date(year, month-1,
+      amountDaysInTheMonths[month-1]).getDate() + TheWeekDayOfTheFirstMonthsDay - 5)
+  } else if (month === 0) {
+    firstDayInThePanel = (new Date(year-1, 11,
+      amountDaysInTheMonths[11]).getDate() - TheWeekDayOfTheFirstMonthsDay+2);
+  } else {
     firstDayInThePanel = (new Date(year, month-1,
       amountDaysInTheMonths[month-1]).getDate() - TheWeekDayOfTheFirstMonthsDay+2);
+  }
 
 
   const lastDayInThePanel: number = new Date(year, 
     month+1, 7 - TheWeekDayOfTheLastMonthsDay)
     .getDate();
 
- for (let index:number = amountDaysInTheMonths[month-1]; 
-  index >=  firstDayInThePanel; 
-  index--
-  ) {
-    daysAmountInThePreviousMonths.unshift(index);
- }
+  if (month === 0) {
+    for (let index:number = amountDaysInTheMonths[11]; 
+      index >=  firstDayInThePanel; 
+      index--
+      ) {
+        daysAmountInThePreviousMonths.unshift(index);
+     }
+  } else {
+    for (let index:number = amountDaysInTheMonths[month-1]; 
+      index >=  firstDayInThePanel; 
+      index--
+      ) {
+        daysAmountInThePreviousMonths.unshift(index);
+     }
+  }
 
  for (let index:number = 1; index <= amountDaysInTheMonths[month]; index++) {
   daysAmountInTheCurrentMonths.push(index);

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import { DaysAmountInThePanel } from "../date/daysAmountInThePanel";
-import { DecreaseMonths} from "../date/decreaseMonths";
-import { IncreaseMonths} from "../date/increaseMonths";
+import { DaysAmountInThePanel } from "../../lib/daysAmountInThePanel";
+import { DecreaseMonths} from "../../lib/decreaseMonths";
+import { IncreaseMonths} from "../../lib/increaseMonths";
 import {monthsListFull,daysWeekShort } from "../../data";
 import styles from './Days.module.scss';
 import vectorLeft from "../../assets/img/VectorLeft.svg";
@@ -28,7 +28,7 @@ export const Days: React.FC = () => {
     dispatch(dateChanging(new Date(currentDate.getFullYear(), currentDate.getMonth()+1, value)))
   }
 
-  const [cls, setCls] = useState('dayCell');
+  // const [cls, setCls] = useState('dayCell');
   
 
 

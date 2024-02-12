@@ -2,7 +2,7 @@ import React from "react";
 import styles from './DailyTime.module.scss';
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { dateChanging } from "../../features/dateState";
-import { timeList } from "../date/getLocalTime";
+import { timeList } from "../../lib/getLocalTime";
 
 
 

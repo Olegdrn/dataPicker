@@ -19,3 +19,16 @@ $hoverColor: #006BB4;
   text-decoration: underline;
   border-bottom: 4px solid $hoverColor;
 }
+
+
+@media (max-width:900px) {
+  .button{
+    width: 35vw;
+  }
+}
+
+@media (max-width:500px) {
+  .button {
+    width: 40vw;
+  }
+}

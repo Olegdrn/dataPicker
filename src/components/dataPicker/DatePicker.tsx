@@ -22,7 +22,6 @@ export const DataPicker: React.FC = () => {
     reset();
   };
 
-  console.log(watch("example")) 
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

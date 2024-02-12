@@ -45,7 +45,7 @@ export const daysWeekShort: string[] =[
   'Thu',
   'Fri',
   'Sat',
-  'Sun'
+  'Sun',
 ];
 
 

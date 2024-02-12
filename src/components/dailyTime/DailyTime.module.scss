@@ -19,6 +19,14 @@ $hoverColor: #006BB4;
 text-decoration: underline;
 }
 
-  .choosedTime{
-    background-color: blue;
+@media (max-width:900px) {
+  .dailyTime{
+    font-size: 10px;
   }
+}
+
+@media (max-width:500px) {
+  .dailyTime{
+    font-size: 8px;
+  }
+}

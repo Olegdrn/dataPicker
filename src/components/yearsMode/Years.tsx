@@ -1,10 +1,9 @@
 import styles from './Years.module.scss';
 import React from "react";
-import {monthsListFull} from "../../data";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { dateChanging } from "../../features/dateState";
 import {changePanelMode} from "../../features/panelModeState";
-import { GetYearsList } from "../date/getYearsList";
+import { GetYearsList } from "../../lib/getYearsList";
 
 export const Years: React.FC = () => {
 

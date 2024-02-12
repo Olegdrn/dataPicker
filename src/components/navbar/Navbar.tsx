@@ -1,6 +1,6 @@
 import { Calendar } from '../calendar/Calendar';
 import styles from './Navbar.module.scss';
-import { useAppSelector, useAppDispatch } from "../../hooks/redux";
+import { useAppDispatch } from "../../hooks/redux";
 import { changePanelPosition } from "../../features/panelPosition";
 
 export const Navbar: React.FC = () => {
