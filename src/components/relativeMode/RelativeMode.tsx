@@ -3,7 +3,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { dateChanging } from "../../features/dateState";
 import { GetRelativeResult } from "../../lib/relativeCalculations";
-import { changeDateMode } from "../../features/dateMode";
 
 export const RelativeMode: React.FC = () => {
   const [operationType, setOperationType] = useState<string>("Seconds ago");
@@ -19,8 +18,6 @@ export const RelativeMode: React.FC = () => {
     operationType,
     value
   );
-
-  console.log(value);
 
   return (
     <div className={styles.relativeModeContainer}>

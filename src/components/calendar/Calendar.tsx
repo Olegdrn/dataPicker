@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import styles from "./Calendar.module.scss";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { Months } from "../monthsMode/Months";
@@ -22,6 +22,10 @@ export const Calendar: React.FC = () => {
     (state) => state.dateModeChanger.DateMode
   );
   const dispatch = useAppDispatch();
+
+  // const valueSetting = useCallback(() => {
+  //   currentDate.toString().slice(0, 24);
+  // }, [currentDate]);
 
   return (
     <>
