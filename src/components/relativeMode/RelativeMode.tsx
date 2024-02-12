@@ -25,6 +25,8 @@ export const RelativeMode: React.FC = () => {
         type="number"
         onChange={(e) => {
           setValue(() => +e.target.value);
+        }}
+        onBlur={() => {
           dispatch(dateChanging(currentRelativeDate));
         }}
       />
@@ -34,6 +36,9 @@ export const RelativeMode: React.FC = () => {
         className={styles.selection}
         onChange={(e) => {
           setOperationType(() => e.target.value);
+        }}
+        onBlur={() => {
+          dispatch(dateChanging(currentRelativeDate));
         }}
       >
         <option value="Seconds ago">Seconds ago</option>

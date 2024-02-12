@@ -1,0 +1,23 @@
+$hoverColor: #006BB4;
+.dataInformation{
+  display: flex;
+  height: 35px;
+  width: 100%;
+  font-size: 10px;
+}
+
+.startButton{
+  width: 30%;
+  font-weight:600;
+  cursor: pointer;
+}
+
+.informationInput{
+  width: 70%;
+  font-size: 12px;
+  padding: 10px 20px;
+}
+
+.informationInput:focus{
+  border-bottom: 4px solid $hoverColor;
+}

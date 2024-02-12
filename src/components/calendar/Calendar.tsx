@@ -7,11 +7,9 @@ import { Days } from "../daysMode/Days";
 import { dateChanging } from "../../features/dateState";
 import { RelativeMode } from "../relativeMode/RelativeMode";
 import { changeDateMode } from "../../features/dateMode";
+import { DataPicker } from "../dataPicker/DatePicker";
 
 export const Calendar: React.FC = () => {
-  const currentDate: Date = useAppSelector(
-    (state) => state.dateChanger.currentDate
-  );
   const panelMode: string = useAppSelector(
     (state) => state.modeChanger.panelMode
   );
@@ -71,28 +69,7 @@ export const Calendar: React.FC = () => {
             <RelativeMode />
           </>
         )}
-
-        {panelPosition === "left" && (
-          <div className={styles.dataInformation}>
-            <button className={styles.startButton}>Start date</button>
-            <input
-              type="text"
-              className={styles.informationInput}
-              value={currentDate.toString().slice(0, 24)}
-            />
-          </div>
-        )}
-
-        {panelPosition === "right" && (
-          <div className={styles.dataInformation}>
-            <button className={styles.startButton}>End date</button>
-            <input
-              type="text"
-              className={styles.informationInput}
-              value={currentDate.toString().slice(0, 24)}
-            />
-          </div>
-        )}
+        <DataPicker />
       </div>
     </>
   );

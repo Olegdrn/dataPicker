@@ -1,38 +1,52 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import {Inputs} from "../../../types";
-
+import { Inputs } from "../../../types";
+import styles from "./DataPicker.module.scss";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { dateChanging } from "../../features/dateState";
 
 export const DataPicker: React.FC = () => {
-
+  const currentDate: Date = useAppSelector(
+    (state) => state.dateChanger.currentDate
+  );
+  const position: string = useAppSelector(
+    (state) => state.positionChanger.side
+  );
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
     reset,
     watch,
-    formState: { 
-      errors,
-      isValid
-     },
+    formState: { errors, isValid },
   } = useForm<Inputs>({
-      mode:"onBlur"
+    mode: "onBlur",
   });
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data)
+    dispatch(dateChanging(new Date(data.exampleRequired)));
     reset();
   };
 
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register("example", { required: "This field is required" })} />
-      {errors.example && <span>{errors.example.message}</span>}
-      
-      <input {...register("exampleRequired", { required: "This field is required" })} />
-      {errors.exampleRequired && <span>{errors.exampleRequired.message}</span>}
-
-      <input type="submit" value={"send"} disabled={!isValid}/>
+      <div className={styles.dataInformation}>
+        <button
+          type="submit"
+          className={styles.startButton}
+          disabled={!isValid}
+        >
+          {position === "left" ? "Start date" : "End date"}
+        </button>
+        <input
+          type="text"
+          className={styles.informationInput}
+          value={currentDate.toString().slice(0, 24)}
+          {...register("exampleRequired")}
+        />
+        {errors.exampleRequired && (
+          <span>{errors.exampleRequired.message}</span>
+        )}
+      </div>
     </form>
-  )
-
-}
+  );
+};
