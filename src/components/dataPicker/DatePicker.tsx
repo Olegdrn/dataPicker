@@ -51,7 +51,7 @@ export const DataPicker: React.FC = () => {
           })}
         />
       </div>
-      {errors.exampleRequired && (
+      {errors.exampleRequired && mode === "relative" && (
         <span className={styles.error}>{errors.exampleRequired.message}</span>
       )}
     </form>
