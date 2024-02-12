@@ -21,3 +21,8 @@ $hoverColor: #006BB4;
 .informationInput:focus{
   border-bottom: 4px solid $hoverColor;
 }
+
+.error{
+  color: red;
+  font-size: 10px;
+}

@@ -11,6 +11,7 @@ $hoverColor: #006BB4;
 }
 
 .generalInfo, .monthsYearInfo{
+height: 20px;
 display: flex;
 align-items: center;
 }
@@ -20,7 +21,7 @@ align-items: center;
 }
 
 .direction{
-  height: 22px;
+  height: 14px;
   scale: 1.3;
   padding: 0 6px 6px;
 }
@@ -92,7 +93,7 @@ opacity: 0.5;
   height: 100%;
   justify-content: space-between;
   align-items: center;
-  height: 83%;
+  height: 80%;
 }
 
 .daysTable{

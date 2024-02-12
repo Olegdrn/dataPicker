@@ -11,6 +11,10 @@ export const DataPicker: React.FC = () => {
   const position: string = useAppSelector(
     (state) => state.positionChanger.side
   );
+  const mode: string = useAppSelector(
+    (state) => state.dateModeChanger.DateMode
+  );
+
   const dispatch = useAppDispatch();
   const {
     register,
@@ -33,20 +37,23 @@ export const DataPicker: React.FC = () => {
         <button
           type="submit"
           className={styles.startButton}
-          disabled={!isValid}
+          // disabled={!isValid}
         >
           {position === "left" ? "Start date" : "End date"}
         </button>
         <input
           type="text"
+          placeholder={currentDate.toString().slice(0, 24)}
           className={styles.informationInput}
-          value={currentDate.toString().slice(0, 24)}
-          {...register("exampleRequired")}
+          // value={currentDate.toString().slice(0, 24)}
+          {...register("exampleRequired", {
+            required: "Expected format MMM D, YYYY @ HH:mm:ss",
+          })}
         />
-        {errors.exampleRequired && (
-          <span>{errors.exampleRequired.message}</span>
-        )}
       </div>
+      {errors.exampleRequired && (
+        <span className={styles.error}>{errors.exampleRequired.message}</span>
+      )}
     </form>
   );
 };
