@@ -1,36 +1,43 @@
-import styles from './RelativeMode.module.scss';
+import styles from "./RelativeMode.module.scss";
 import React, { useEffect, useMemo, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
-import { relativeValue, relativeOperation } from "../../features/relativeState";
-import {dateChanging} from "../../features/dateState";
-import { GetRelativeResult } from '../../lib/relativeCalculations';
+import { dateChanging } from "../../features/dateState";
+import { GetRelativeResult } from "../../lib/relativeCalculations";
+import { changeDateMode } from "../../features/dateMode";
 
 export const RelativeMode: React.FC = () => {
+  const [operationType, setOperationType] = useState<string>("Seconds ago");
+  const [value, setValue] = useState<number>(0);
 
-
-  const value:number = useAppSelector(state=> state.relativeDataChanger.value)
-  const operationType:string = useAppSelector(state=> state.relativeDataChanger.operation)
-  const currentDate: Date = useAppSelector((state)=> state.dateChanger.currentDate);
+  const currentDate: Date = useAppSelector(
+    (state) => state.dateChanger.currentDate
+  );
   const dispatch = useAppDispatch();
 
-  const currentRelativeDate:Date = GetRelativeResult(currentDate, operationType, value);
+  const currentRelativeDate: Date = GetRelativeResult(
+    currentDate,
+    operationType,
+    value
+  );
 
-
+  console.log(value);
 
   return (
-    <div className= {styles.relativeModeContainer}>
-
-      <input type="number" onChange={e=>{
-        dispatch(relativeValue(+(e.target.value)))
-        dispatch(dateChanging(currentRelativeDate))
-      }}
+    <div className={styles.relativeModeContainer}>
+      <input
+        type="number"
+        onChange={(e) => {
+          setValue(() => +e.target.value);
+          dispatch(dateChanging(currentRelativeDate));
+        }}
       />
-      <select name="operation"  value={operationType}
-        className={styles.selection} 
-        onChange={e=>{
-          dispatch(relativeOperation(e.target.value))
-        }
-      }
+      <select
+        name="operation"
+        value={operationType}
+        className={styles.selection}
+        onChange={(e) => {
+          setOperationType(() => e.target.value);
+        }}
       >
         <option value="Seconds ago">Seconds ago</option>
         <option value="Minutes ago">Minutes ago</option>
@@ -41,8 +48,6 @@ export const RelativeMode: React.FC = () => {
         <option value="Hours From now">Hours From now</option>
         <option value="Days From now">Days From now</option>
       </select>
-
     </div>
-  )
-
-}
+  );
+};

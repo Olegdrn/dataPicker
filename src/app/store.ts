@@ -3,7 +3,6 @@ import  dateChangingReducer  from '../features/dateState';
 import changeModeReducer from '../features/panelModeState';
 import panelPositionChanger from '../features/panelPosition';
 import dateMode from '../features/dateMode';
-import relativeData from '../features/relativeState'
 
 
 export const store = configureStore({
@@ -12,7 +11,6 @@ export const store = configureStore({
     modeChanger: changeModeReducer,
     positionChanger: panelPositionChanger,
     dateModeChanger: dateMode,
-    relativeDataChanger: relativeData
   },
 });
 
