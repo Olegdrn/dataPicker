@@ -27,32 +27,32 @@ export const DataPicker: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    dispatch(dateChanging(new Date(data.exampleRequired)));
+    const year: string = data.exampleRequired.slice(0, 10).replace(/-/g, ",");
+    const time: string = data.exampleRequired.slice(11, 20).replace(/-/g, ",");
+    const full: string = `${year},${time}`;
+    dispatch(dateChanging(new Date(year)));
     reset();
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.dataInformation}>
-        <button
-          type="submit"
-          className={styles.startButton}
-          // disabled={!isValid}
-        >
+        <button type="submit" className={styles.startButton}>
           {position === "left" ? "Start date" : "End date"}
         </button>
         <input
           type="text"
           placeholder={currentDate.toString().slice(0, 24)}
           className={styles.informationInput}
-          // value={currentDate.toString().slice(0, 24)}
           {...register("exampleRequired", {
-            required: "Expected format MMM D, YYYY @ HH:mm:ss",
+            pattern: /^\d{4}-\d{2}-\d{2}\s?@\s?\d{2}-\d{2}-\d{2}/,
           })}
         />
       </div>
-      {errors.exampleRequired && mode === "relative" && (
-        <span className={styles.error}>{errors.exampleRequired.message}</span>
+      {errors.exampleRequired?.type === "pattern" && (
+        <span className={styles.error}>
+          Expected format "YYYY-MM-DD @ HH-MM-SS"
+        </span>
       )}
     </form>
   );
