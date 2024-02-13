@@ -39,6 +39,10 @@ align-items: center;
 .calendar, .weekDays{
   @extend %grid;
 }
+.calendar:hover{
+  background-color: #d8e2fc;
+  border-radius: 3px;
+}
 
 .dayCell, .dayCellBefAft{
   padding: 3px;
