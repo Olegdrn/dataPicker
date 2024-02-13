@@ -27,10 +27,11 @@ export const DataPicker: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const year: string = data.exampleRequired.slice(0, 10).replace(/-/g, ",");
-    const time: string = data.exampleRequired.slice(11, 20).replace(/-/g, ",");
-    const full: string = `${year},${time}`;
-    dispatch(dateChanging(new Date(year)));
+    const year: string = data.exampleRequired.slice(0, 10);
+    const time: string = data.exampleRequired.slice(11, 20).replace(/-/g, ":");
+    const full: string = `${year}T${time}`;
+    console.log(full);
+    dispatch(dateChanging(new Date(full)));
     reset();
   };
 
