@@ -21,13 +21,19 @@ export const DailyTime: React.FC = () => {
     dispatch(dateChanging(new Date(year, months, days, hours, mins, 0)));
   };
 
+  console.log(currentDate.toTimeString().slice(0, 5));
+
   return (
     <>
       <div className={styles.dailyTime}>
         {timeList().map((value: string, index: number) => (
           <p
             key={index}
-            className={styles.dailyTimeCell}
+            className={
+              currentDate.toTimeString().slice(0, 5) === value
+                ? styles.dailyTimeCellClicked
+                : styles.dailyTimeCell
+            }
             onClick={() => {
               setDailyTime(value);
             }}

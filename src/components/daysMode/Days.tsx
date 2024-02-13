@@ -110,7 +110,11 @@ export const Days: React.FC = () => {
             {daysAmountInTheCurrentMonths.map(
               (value: number, index: number) => (
                 <p
-                  className={styles.dayCell}
+                  className={
+                    currentDate.getDate() === index + 1
+                      ? styles.dayCellClicked
+                      : styles.dayCell
+                  }
                   key={index}
                   onClick={() => {
                     putDaysInCurrent(value);

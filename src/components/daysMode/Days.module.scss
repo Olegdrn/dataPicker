@@ -46,6 +46,14 @@ align-items: center;
   cursor: pointer;
 }
 
+.dayCellClicked{
+  padding: 3px;
+  margin: 5px;
+  cursor: pointer;
+  background-color: $hoverColor;
+  border-radius: 3px;
+}
+
 .dayCellBefAft{
 opacity: 0.5;
 }

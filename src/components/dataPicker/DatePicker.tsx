@@ -30,7 +30,6 @@ export const DataPicker: React.FC = () => {
     const year: string = data.exampleRequired.slice(0, 10);
     const time: string = data.exampleRequired.slice(11, 20).replace(/-/g, ":");
     const full: string = `${year}T${time}`;
-    console.log(full);
     dispatch(dateChanging(new Date(full)));
     reset();
   };
